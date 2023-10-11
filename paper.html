@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Research Agent</title>
+    <link rel="icon" href="https://i.ibb.co/XxNWGcs/Screenshot-2023-10-10-204459-clipdrop-background-removal.png" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Existing styles */
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    
+        h1 {
+    color: #f5f6f7;
+}
+
+        /* Styles for smaller screens */
+        @media (max-width: 576px) {
+            body {
+                padding: 1rem;
+            }
+    
+            .form-group {
+                margin-top: 1rem;
+            }
+    
+            .container h1, .container h2 {
+                font-size: 1.5rem;
+            }
+        }
+    
+        :root {
+            --color-information-hue: 0;
+            --color-information-10: hsl(var(--color-information-hue), 87%, 97%);
+        }
+    
+        /* Dark mode & Other styles */
+        body {
+            background-color: hsl(240, 5.7%, 10.4%);
+            color: #fff;
+        }
+    
+        .container {
+            background-color: hsl(240, 5.7%, 10.4%);
+        }
+    
+        #query {
+            background-color: hsl(240, 5.7%, 10.4%);
+            color: #fff;
+            border: 1px solid #495057;
+        }
+    
+        #query::placeholder {
+            color: #ddd;
+        }
+    
+        .btn-primary,
+        .btn-primary:disabled,  /* Adding styling for the disabled state of button */
+        .btn-primary:active,
+        .btn-primary:focus,
+        .btn-primary:hover {
+            background-color: var(--color-information-10) !important;
+            border-color: var(--color-information-10) !important;
+            color: #000;  /* Ensuring the button text is always black */
+        }
+        .header-icon {
+    vertical-align: middle; 
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.3em; /* Add this line */
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar__toggle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Added margin on top and left */
+    margin-top: 15px;
+    margin-left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+
+.navbar__toggle:focus {
+    outline: none;
+}
+
+.nav-content {
+    height: 100%;
+    width: 0; 
+    position: fixed;
+    z-index: 9999; /* Increase z-index value */
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px; 
+}
+
+.nav-content a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;  /* Change this */
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 36px;
+    zoom: 1.5;
+    padding: 15px 20px; /* Adjust padding here */
+}
+
+
+@media screen and (min-width: 768px) {
+    .nav-content.opened {
+        width: 15%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-content.opened {
+        width: 50%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .nav-content.always-open {
+        width: 15%;
+    }
+}
+
+.mt-custom {
+    margin-top: 4rem; /* Set this value as desired */
+}
+
+.paper-font {
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+.paper-details {
+    padding: 1rem;
+    background-color: hsl(240, 5.7%, 15%);
+    border-radius: 10px;
+    color: #fff;
+    line-height: 1.5;
+}
+
+.paper-details h2 {
+    margin-top: 1.5rem;
+}
+
+.img-fluid {
+    max-width: 90%;  /* Adjust as per your preference */
+    height: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+    </style>
+    
+    
+      
+</head>
+<body>
+    <!-- Navigation Button and Content -->
+    <nav>
+        <button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button" onclick="openNav()">
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+              <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
+            </svg>
+        </button>
+        <div id="myNav" class="nav-content">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/">Agent</a>
+            <a href="/paper">Paper</a>
+            <a href="https://330f.betteruptime.com/">Status</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="text-center mt-custom paper-font">
+            <img src="https://i.ibb.co/sy8x6Jn/paper.png" alt="icon" class="header-icon">Paper
+        </h1>
+        <div class="paper-details mt-custom paper-font">
+            <p>
+                AI Research Agent is an autonomous agent designed for comprehensive online research on a variety of tasks.
+            </p>
+            <p>
+                The agent can produce detailed, factual and unbiased research reports, with customization options for focusing on relevant resources, outlines, and lessons.
+                Inspired by the recent <a href="https://arxiv.org/abs/2305.04091" target="_blank">Plan-and-Solve</a> and 
+                <a href="https://arxiv.org/abs/2005.11401" target="_blank">RAG (Retrieval Augmented Generation)</a> papers, The Research Agent addresses issues of speed, determinism and reliability,
+                offering a more stable performance and increased speed through parallelized agent work, as opposed to synchronous operations.
+                </p>
+                
+            <p>
+                Our mission is to empower individuals and organizations with accurate, unbiased, and factual information by leveraging the power of AI.
+            </p>
+            <h2>Why AI Research Agent?</h2>
+            <p>
+                To form objective conclusions for manual research tasks can take time, sometimes weeks to find the right resources and information.
+                Current LLMs are trained on past and outdated information, with heavy risks of hallucinations, making them almost irrelevant for research tasks.
+                Solutions that enable web search (such as ChatGPT + Web Plugin), only consider limited resources that in some cases result in superficial conclusions or biased answers.
+                Using only a selection of resources can create bias in determining the right conclusions for research questions or tasks.
+            </p>
+            <h2>Architecture</h2>
+<p>
+    The main idea is to run "planner" and "execution" agents, whereas the planner generates questions to research, and the execution agents seek the most related information based on each generated research question. 
+    Finally, the planner filters and aggregates all related information and creates a research report. The agents leverage both gpt3.5-turbo-16k and gpt-4 to complete a research task.
+</p>
+
+<!-- Image -->
+<div class="text-center">
+    <img src="https://i.ibb.co/fCfbWfx/flow.png" alt="Flow Diagram" class="img-fluid"> 
+</div>
+
+<p>More specifically:</p>
+
+            <ul>
+                <li>Generate a set of research questions that together form an objective opinion on any given task.</li>
+                <li>For each research question, trigger a crawler agent that scrapes online resources for information relevant to the given task.</li>
+                <li>For each scraped resources, summarize based on relevant information and keep track of its sources.</li>
+                <li>Finally, filter and aggregate all summarized sources and generate a final research report.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openNav() {
+    document.getElementById("myNav").classList.add("opened");
+
+    // Add always-open class on larger screens
+    if(window.innerWidth > 768){
+        document.getElementById("myNav").classList.add("always-open");
+    }
+    /*else{
+        document.getElementById("navbar__toggle").style.display = "none";
+    }*/
+}
+
+function closeNav() {
+    document.getElementById("myNav").classList.remove("opened");
+
+    // Remove always-open class on larger screens
+    if(window.innerWidth > 768){
+        document.getElementById("myNav").classList.remove("always-open"); 
+    }
+    /*else{
+        document.getElementById("navbar__toggle").style.display = "block";
+    }*/
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Check for window width.
+    if(window.innerWidth > 768){
+        document.getElementById("myNav").classList.add("always-open");
+    } else {
+        document.getElementById("myNav").classList.remove("always-open");
+    }
+});
+
+        $(document).click(function(event) { 
+    // if you click on anything except the modal itself or the "open modal" link, close the modal
+    if (!$(event.target).closest("#myNav, .navbar__toggle").length) {
+        // Only close navigation on smaller devices
+        if(window.innerWidth <= 768){
+            closeNav();
+        }
+    }
+}); 
+    </script>
+    
+</body>
+</html>
