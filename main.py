@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 import requests
 import mistune 
+from dotenv import load_dotenv
+load_dotenv()
+import os
 
 app = Flask(__name__)
 app.secret_key = 'somesecretkey'
@@ -9,7 +12,7 @@ app.secret_key = 'somesecretkey'
 def get_response():
     query = request.args.get('query', default = '*', type = str)
     headers = {
-        'x-api-key': '330fuseless'
+        'x-api-key': os.getenv("X_API_KEY")  # get the API key from environment
     }
     response = requests.post(
         "https://research-agent-v1ur.onrender.com/",
