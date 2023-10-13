@@ -238,20 +238,50 @@ document.addEventListener("DOMContentLoaded", function() {
             button.disabled = !this.value;
         };
     
-        // Function to fetch results
-        function fetchResults() {
-            let query = input.value;
-            // Disable button after it's clicked
-            button.disabled = true;
-    
-            fetch(`/getResponse?query=${query}`)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("response").innerHTML = data;
-                    // Enable button when response is received
-                    button.disabled = false;
-                });
-        }
+        // State variable to track if a request is ongoing
+var isProcessing = false;
+
+// Function to fetch results
+function fetchResults() {
+    let query = input.value;
+    isProcessing = true;  // Set processing state to true
+
+    updateSubmitButtonStatus();
+
+    // Change button text at regular intervals
+    let messages = ['🔍 Searching the web...', '🌐 Scraping websites...', '⏰ Generating response...'];
+    let index = 0;
+    let intervalId = setInterval(() => {
+        if(index >= messages.length) index = 0;
+        button.innerText = messages[index];
+        index++;
+    }, 2000);  // Change text every 2 seconds
+
+    fetch(`/getResponse?query=${query}`)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("response").innerHTML = data;
+
+            // Stop changing text and enable button when response is received
+            isProcessing = false; // Set processing state to false
+            updateSubmitButtonStatus();
+            clearInterval(intervalId);
+            button.innerText = "Submit";
+        });
+}
+
+// Event to handle input changes (to consider the processing state)
+input.oninput = function() {
+    updateSubmitButtonStatus();
+};
+
+// Function to update submit button status based on input and processing state
+function updateSubmitButtonStatus() {
+    button.disabled = !input.value || isProcessing;
+}
+
+
+
         $(document).click(function(event) { 
     // if you click on anything except the modal itself or the "open modal" link, close the modal
     if (!$(event.target).closest("#myNav, .navbar__toggle").length) {
