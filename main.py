@@ -15,7 +15,7 @@ def get_response():
         'x-api-key': os.getenv("X_API_KEY")  # get the API key from environment
     }
     response = requests.post(
-        "https://research-agent-v1ur.onrender.com/",
+        "https://research-agent-ai-0ilx.onrender.com/",
         headers=headers,
         json={"query": query}
     )
